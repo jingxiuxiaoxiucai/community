@@ -1,0 +1,62 @@
+.main{
+    margin: 30px;
+    background-color: white;
+}
+body{
+    background-color: #5bc0de;
+}
+.btn-publish{
+    float: right;
+    margin-bottom: 15px;
+}
+.media-object{
+    height: 38px;
+    width: 38px;
+}
+.media-body{
+    padding-top: 10px;
+}
+.desc-text{
+    font-size: 12px;
+    font-weight: normal;
+    color: #999;
+}
+.profile .section{
+    margin-top: 15px;
+}
+.community-menu{
+    color: #999;
+}
+.error-jumbotron{
+    margin: 50px;
+
+}
+.comment{
+    margin: 10px 0px;
+}
+.btn-comment{
+    float: right;
+    margin-bottom: 10px;
+}
+.comment-hr-margin{
+    margin-top: 0;
+}
+.comment-menu{
+    color: #999;
+    margin-top: 5px;
+}
+.comment-menu .comment-icon{
+    margin-right: 9px;
+    font-size: 17px;
+    cursor: pointer;
+}
+.comment-menu .comment-icon:hover{
+    color: #499ef3;
+ }
+.comment-huifupingluan{
+    margin-bottom: 15px;
+    border-bottom: 1px solid #333;
+    padding-bottom: 5px;
+}
+
+

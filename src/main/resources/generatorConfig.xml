@@ -9,7 +9,7 @@
         <plugin type="org.mybatis.generator.plugins.RowBoundsPlugin"></plugin>
 
         <jdbcConnection driverClass="com.mysql.jdbc.Driver"
-                        connectionURL="jdbc:mysql:///community"
+                        connectionURL="jdbc:mysql://192.168.1.101:3306/community"
                         userId="root"
                         password="root">
         </jdbcConnection>
@@ -36,6 +36,7 @@
         <table tableName="user" domainObjectName="User"></table>
         <table tableName="question" domainObjectName="Question"></table>
         <table tableName="comment" domainObjectName="Comment"></table>
+        <table tableName="notification" domainObjectName="Notification"></table>
 
 
     </context>

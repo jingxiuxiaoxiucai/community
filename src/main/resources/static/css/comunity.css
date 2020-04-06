@@ -1,9 +1,11 @@
 .main{
     margin: 30px;
     background-color: white;
+
 }
 body{
     background-color: #5bc0de;
+
 }
 .btn-publish{
     float: right;
@@ -50,13 +52,78 @@ body{
     font-size: 17px;
     cursor: pointer;
 }
+.comment-menu .active{
+    color: #499ef3;
+}
 .comment-menu .comment-icon:hover{
     color: #499ef3;
  }
+
 .comment-huifupingluan{
-    margin-bottom: 15px;
-    border-bottom: 1px solid #333;
     padding-bottom: 5px;
+    margin-bottom: 15px;
+    border-bottom: 1px solid #eee;
+
 }
+.question-h4{
+    margin-top: 5px;
+    margin-right: 9px;
+}
+.question-tag{
+    margin-right:   9px;
+}
+.question-wechat{
+  width: 50%;
+}
+
+.question-related{
+    line-height:   20px;
+   font-size:   12px;
+    margin-left:   0px;
+    list-style:   none;
+    padding-left:   0;
+}
+
+
+.sub-comments{
+    border-radius: 5px;
+    margin-top: 10px;
+    border: 1px solid #eee;
+    padding-top: 15px;
+    margin-bottom: 15px;
+}
+.sub-comments .btn{
+     margin: 10px 0;
+}
+.publish-tag-tab{
+    display: none;
+    margin-top: 10px;
+    padding-top: 10px;
+}
+.publish-tag-tab .label-info{
+
+    white-space: normal;
+    margin: 5px 5px;
+   display: inline-block;
+}
+.footer {
+    text-align: center;
+    font-size: 20px;
+    color: #666;;
+    padding: 0 0 15px 0;
+
+    margin: 30px;
+    background-color: white;
+
+}
+
+
+
+
+
+
+
+
+
 
 

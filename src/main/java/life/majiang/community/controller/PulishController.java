@@ -1,11 +1,13 @@
 package life.majiang.community.controller;
 
+import life.majiang.community.cache.TagCache;
 import life.majiang.community.dto.QuestionDTO;
 import life.majiang.community.mapper.QuestionMapper;
 import life.majiang.community.mapper.UserMapper;
 import life.majiang.community.model.Question;
 import life.majiang.community.model.User;
 import life.majiang.community.service.QuestionService;
+import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -32,12 +34,14 @@ private QuestionService questionService;
         model.addAttribute("description",question.getDescription());
         model.addAttribute("tag",question.getTag());
         model.addAttribute("id",question.getId());
+        model.addAttribute("tagCaches", TagCache.get());
         return "publish";
     }
 
 
     @GetMapping("/publish")
-    public String publish(){
+    public String publish( Model model){
+        model.addAttribute("tagCaches", TagCache.get());
         return "publish";
     }
     @PostMapping("/publish")
@@ -45,7 +49,7 @@ private QuestionService questionService;
             @RequestParam(value = "title" ,required = false)String title,
             @RequestParam(value = "description" ,required = false)String description,
             @RequestParam(value = "tag" ,required = false)String tag,
-            @RequestParam(value = "id" ,required = false)long id,
+            @RequestParam(value = "id" ,required = false)Long id,
             HttpServletRequest request,
             Model model
     ){
@@ -64,6 +68,11 @@ private QuestionService questionService;
             model.addAttribute("error", "标签不能为空");
             return "publish";
         }
+        String invalid = TagCache.filterInvalid(tag);
+        if(StringUtils.isNoneBlank(invalid)){
+            model.addAttribute("error", "输入非法标签"+invalid);
+            return "publish";
+        }
         User user = (User) request.getSession().getAttribute("user");
         if (user == null) {
             model.addAttribute("error", "用户未登录");
@@ -71,14 +80,12 @@ private QuestionService questionService;
         }
 
         Question question = new Question();
-        question.setTag(tag);
         question.setTitle(title);
         question.setDescription(description);
+        question.setTag(tag);
         question.setCreator(user.getId());
-
         question.setId(id);
         questionService.createOrUpdate(question);
-
         return "redirect:/";
     }
 

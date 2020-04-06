@@ -76,6 +76,19 @@
             <artifactId>spring-boot-devtools</artifactId>
             <optional>true</optional>
         </dependency>
+        <!--commentCreateDTO.getContent()==null || commentCreateDTO.getContent()=="" 替换为StringUtils.isBlank(commentCreateDTO.getContent())-->
+        <dependency>
+            <groupId>org.apache.commons</groupId>
+            <artifactId>commons-lang3</artifactId>
+            <version>3.9</version>
+        </dependency>
+
+        <!--ucloud 云主机 -->
+        <dependency>
+            <groupId>cn.ucloud.ufile</groupId>
+            <artifactId>ufile-client-java</artifactId>
+            <version>2.4.2</version>
+        </dependency>
     </dependencies>
 
     <build>

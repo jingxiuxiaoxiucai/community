@@ -129,7 +129,7 @@
 <!--                    <password>${db.password}</password>-->
                     <url>jdbc:mysql://10.9.17.72:3306/community</url>
                     <user>root</user>
-                    <password>root</password>
+                    <password>123456789Gl</password>
                 </configuration>
                 <dependencies>
                     <dependency>

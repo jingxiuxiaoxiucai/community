@@ -18,6 +18,31 @@
         <java.version>1.8</java.version>
     </properties>
 
+    <profiles>
+        <profile>
+<!--            开发环境-->
+        <id>dev</id>
+            <properties>
+                <db.url>jdbc:mysql://192.168.1.101:3306/community</db.url>
+                <db.user>root</db.user>
+                <db.password>root</db.password>
+            </properties>
+            <activation>
+                <activeByDefault>true</activeByDefault>
+            </activation>
+        </profile>
+
+<!--        <profile>-->
+<!--            &lt;!&ndash;    线上开发环境&ndash;&gt;-->
+<!--            <id>production</id>-->
+<!--            <properties>-->
+<!--                <db.url>jdbc:mysql://10.9.17.72:3306/community</db.url>-->
+<!--                <db.user>root</db.user>-->
+<!--                <db.password>123456789Gl</db.password>-->
+<!--            </properties>-->
+<!--        </profile>-->
+    </profiles>
+
     <dependencies>
         <dependency>
             <groupId>org.springframework.boot</groupId>
@@ -124,12 +149,9 @@
                 <artifactId>flyway-maven-plugin</artifactId>
                 <version>5.2.4</version>
                 <configuration>
-<!--                    <url>${db.url}</url>-->
-<!--                    <user>${db.user}</user>-->
-<!--                    <password>${db.password}</password>-->
-                    <url>jdbc:mysql://10.9.17.72:3306/community</url>
-                    <user>root</user>
-                    <password>123456789Gl</password>
+                    <url>${db.url}</url>
+                    <user>${db.user}</user>
+                    <password>${db.password}</password>
                 </configuration>
                 <dependencies>
                     <dependency>

@@ -54,12 +54,19 @@
             <version>1.2.58</version>
         </dependency>
 
+<!--        <dependency>-->
+<!--            <groupId>mysql</groupId>-->
+<!--            <artifactId>mysql-connector-java</artifactId>-->
+<!--            <version>5.1.8</version>-->
+<!--            <scope>runtime</scope>-->
+<!--        </dependency>-->
+        <!-- https://mvnrepository.com/artifact/mysql/mysql-connector-java -->
         <dependency>
             <groupId>mysql</groupId>
             <artifactId>mysql-connector-java</artifactId>
-            <version>5.1.8</version>
-            <scope>runtime</scope>
+            <version>5.1.45</version>
         </dependency>
+
         <dependency>
             <groupId>org.mybatis.spring.boot</groupId>
             <artifactId>mybatis-spring-boot-starter</artifactId>
@@ -106,12 +113,29 @@
                     <!-- 是否覆盖，true表示会替换生成的JAVA文件，false则不覆盖 -->
                     <overwrite>true</overwrite>
                 </configuration>
+            </plugin>
+            <plugin>
+                <groupId>org.flywaydb</groupId>
+                <artifactId>flyway-maven-plugin</artifactId>
+                <version>5.2.4</version>
+                <configuration>
+<!--                    <url>${db.url}</url>-->
+<!--                    <user>${db.user}</user>-->
+<!--                    <password>${db.password}</password>-->
+                    <url>jdbc:mysql://10.9.17.72:3306/community</url>
+                    <user>root</user>
+                    <password>root</password>
+                </configuration>
                 <dependencies>
                     <dependency>
                         <groupId>mysql</groupId>
                         <artifactId>mysql-connector-java</artifactId>
-                        <version>5.1.8</version>
-                        <scope>runtime</scope>
+                        <version>5.1.45</version>
+                    </dependency>
+                    <dependency>
+                        <groupId>com.h2database</groupId>
+                        <artifactId>h2</artifactId>
+                        <version>1.4.199</version>
                     </dependency>
                 </dependencies>
             </plugin>

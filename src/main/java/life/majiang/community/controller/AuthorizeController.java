@@ -33,25 +33,26 @@ public class AuthorizeController {
     private String redirectUri;
     @Autowired
     private UserService userService;
+
     @GetMapping("/callback")
     public String callback(@RequestParam(name = "code") String code,
-                           @RequestParam(name = "state")String state
+                           @RequestParam(name = "state") String state
             , HttpServletRequest request
-            , HttpServletResponse response){
-        AccessTokenDTO accessTokenDTO=   new AccessTokenDTO();
-       accessTokenDTO.setClient_id(clientId);
+            , HttpServletResponse response) {
+        AccessTokenDTO accessTokenDTO = new AccessTokenDTO();
+        accessTokenDTO.setClient_id(clientId);
 //        accessTokenDTO.setClient_id("c0e900f04d57734bf570");
-      accessTokenDTO.setClient_secret(clientSecret);
+        accessTokenDTO.setClient_secret(clientSecret);
 //        accessTokenDTO.setClient_secret("ae01b21a990d6f156651355da03e2c145a3cf06b");
         accessTokenDTO.setCode(code);
-       accessTokenDTO.setRedirect_uri(redirectUri);
+        accessTokenDTO.setRedirect_uri(redirectUri);
 //        accessTokenDTO.setRedirect_uri("http://localhost:8899/callback");
         accessTokenDTO.setState(state);
-        String  accessToken=  githubProvider.getAccessToken(accessTokenDTO);
-        GithubUser githubUser=githubProvider.getUser(accessToken);
+        String accessToken = githubProvider.getAccessToken(accessTokenDTO);
+        GithubUser githubUser = githubProvider.getUser(accessToken);
         System.out.println(githubUser.getName());
-        if(githubUser!=null){
-            User user=   new User();
+        if (githubUser != null) {
+            User user = new User();
             user.setAccountId(String.valueOf(githubUser.getId()));
 
             user.setName(githubUser.getName());
@@ -60,12 +61,12 @@ public class AuthorizeController {
             user.setAvatarUrl(githubUser.getAvatarUrl());
             userService.createOrUpdate(user);
 
-            response.addCookie(new Cookie("token",token));
+            response.addCookie(new Cookie("token", token));
             //登录成功 写cookie session
             //request.getSession().setAttribute("user",githubUser);
             return "redirect:/";
-        }else {
-            log.error("callback get github error ,{}",githubUser);
+        } else {
+            log.error("callback get github error ,{}", githubUser);
             return "redirect:/";
         }
     }

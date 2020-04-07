@@ -1,6 +1,7 @@
 package life.majiang.community.mapper;
 
 import java.util.List;
+
 import life.majiang.community.model.User;
 import life.majiang.community.model.UserExample;
 import org.apache.ibatis.annotations.Param;

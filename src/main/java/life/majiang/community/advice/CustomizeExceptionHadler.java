@@ -16,7 +16,7 @@ import java.io.IOException;
 import java.io.PrintWriter;
 
 @ControllerAdvice
-public class CustomizeExceptionHadler    {
+public class CustomizeExceptionHadler {
 
     @ExceptionHandler(Exception.class)
     ModelAndView handler(Throwable ex, Model model, HttpServletRequest request, HttpServletResponse response) {
@@ -25,9 +25,9 @@ public class CustomizeExceptionHadler    {
             // fanhui json
             ResultDTO resultDTO;
             if (ex instanceof CustomizeException) {
-                resultDTO= ResultDTO.errorOf((CustomizeException)ex);
+                resultDTO = ResultDTO.errorOf((CustomizeException) ex);
             } else {
-                resultDTO= ResultDTO.errorOf(CustomizeErrorCode.SYS_ERROR);
+                resultDTO = ResultDTO.errorOf(CustomizeErrorCode.SYS_ERROR);
             }
             try {
                 response.setContentType("application/json");
@@ -39,7 +39,7 @@ public class CustomizeExceptionHadler    {
             } catch (IOException ioe) {
 
             }
-             return null;
+            return null;
         } else {
             //fanhui cuowu
             if (ex instanceof CustomizeException) {

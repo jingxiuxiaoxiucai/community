@@ -25,14 +25,13 @@ function comment2target(targetId, type, content) {
             if (response.code == 200) {
                 window.location.reload();
             } else {
-                if(response.code==2003){
-                    var isAccepted=confirm(response.message);
-                    if(isAccepted){
+                if (response.code == 2003) {
+                    var isAccepted = confirm(response.message);
+                    if (isAccepted) {
                         window.open("https://github.com/login/oauth/authorize?client_id=2859958f9f059979ed3a&redirect_uri=" + document.location.origin + "/callback&scope=user&state=1");
-                        window.localStorage.setItem("closable",true);
+                        window.localStorage.setItem("closable", true);
                     }
-                }
-                else {
+                } else {
                     alert(response.message);
                 }
 
@@ -42,35 +41,35 @@ function comment2target(targetId, type, content) {
         dataType: "json"
     });
 }
+
 function comment(e) {
- var commentId=e.getAttribute("data-id");
- var content=$("#input-"+commentId).val();
-    comment2target(commentId,2,content);
+    var commentId = e.getAttribute("data-id");
+    var content = $("#input-" + commentId).val();
+    comment2target(commentId, 2, content);
 }
 
 /**
  展开二级回复
  **/
 function collapseComments(e) {
-    var id=e.getAttribute("data-id");
-    var comments=$("#comment-"+id);
+    var id = e.getAttribute("data-id");
+    var comments = $("#comment-" + id);
 
-   // 获取二级评论的展开状态
-   // var collpase=e.getAttribute("data-collpase");
-   // if(collpase){
-        // 折叠二级评论
-        // comments.removeClass("in");
-        // e.removeAttribute("data-collpase");
-        // e.classList.remove("active");
-  //  }
+    // 获取二级评论的展开状态
+    // var collpase=e.getAttribute("data-collpase");
+    // if(collpase){
+    // 折叠二级评论
+    // comments.removeClass("in");
+    // e.removeAttribute("data-collpase");
+    // e.classList.remove("active");
+    //  }
     var collapse = e.getAttribute("data-collapse");
     if (collapse) {
         comments.removeClass("in");
         e.removeAttribute("data-collpase");
         e.classList.remove("active");
-    }
-    else {
-        var subCommentContainer=$("#comment-"+id);
+    } else {
+        var subCommentContainer = $("#comment-" + id);
         // alert(subCommentContainer.children().length)
         // alert(subCommentContainer.children.length)
         if (subCommentContainer.children().length != 1) {
@@ -135,19 +134,21 @@ function collapseComments(e) {
     //     e.classList.add("comment-active");
     // }
 }
+
 function showSelectTag() {
     $("#showTag").show();
 }
+
 /**
  * 添加 标签
  **/
 function selectTag(e) {
- var value=   e.getAttribute("data-tag");
-    var previous=$("#tag").val();
-    if(previous.indexOf(value)==-1){
-        if(previous){
-            $("#tag").val(previous+","+value);
-        }else {
+    var value = e.getAttribute("data-tag");
+    var previous = $("#tag").val();
+    if (previous.indexOf(value) == -1) {
+        if (previous) {
+            $("#tag").val(previous + "," + value);
+        } else {
             $("#tag").val(value);
         }
     }

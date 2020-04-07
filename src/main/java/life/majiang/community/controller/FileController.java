@@ -15,27 +15,26 @@ import java.io.IOException;
 
 @Controller
 @Slf4j
-public class FileController
-{
+public class FileController {
     @Autowired
-   private   UCloudProvider uCloudProvider;
+    private UCloudProvider uCloudProvider;
 
 
     @ResponseBody
     @RequestMapping("/file/upload")
 
-    public FileDTO upload(HttpServletRequest request){
-        MultipartHttpServletRequest multipartRequest=(MultipartHttpServletRequest) request;
+    public FileDTO upload(HttpServletRequest request) {
+        MultipartHttpServletRequest multipartRequest = (MultipartHttpServletRequest) request;
         MultipartFile file = multipartRequest.getFile("editormd-image-file");
         System.out.println(file.getName());
         try {
             String fileName = uCloudProvider.upload(file.getInputStream(), file.getContentType(), file.getOriginalFilename());
-            FileDTO fileDTO=new FileDTO();
+            FileDTO fileDTO = new FileDTO();
             fileDTO.setSuccess(1);
             fileDTO.setUrl(fileName);
-            return  fileDTO;
+            return fileDTO;
 
-        }  catch (Exception e) {
+        } catch (Exception e) {
             log.error("upload error", e);
             FileDTO fileDTO = new FileDTO();
             fileDTO.setSuccess(0);
@@ -54,7 +53,6 @@ public class FileController
 //        fileDTO.setUrl("/images/下载.jpg");
 //        return  fileDTO;
     }
-
 
 
 }

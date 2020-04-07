@@ -9,7 +9,9 @@ import java.util.List;
 public interface QuestionCustomMapper {
 
     int incView(Question question);
+
     int incCommentCount(Question question);
+
     List<Question> selectRegexpTag(Question question);
 
     Integer countBySearch(QuestionQueryDTO questionQueryDTO);

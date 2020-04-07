@@ -18,19 +18,20 @@ import java.util.List;
 public class QuestionController {
     @Autowired
     private QuestionService questionService;
-@Autowired
-private CommentService commentService;
-    @GetMapping("/question/{id}")
-    public String question(@PathVariable(name = "id")long id, Model model){
-     List<CommentDTO> commentDTOList= commentService.listByTargetId( id, CommentTypeEnum.QUESTION);
-     //累计增加阅读数
-        questionService.incView(id);
-      QuestionDTO questionDTO= questionService.getById(id);
+    @Autowired
+    private CommentService commentService;
 
-        List<QuestionDTO> regexpQuestionList=  questionService.selectRegexpTag(questionDTO);
-      model.addAttribute("questionDTO",questionDTO);
-      model.addAttribute("commentDTOList",commentDTOList);
-      model.addAttribute("regexpQuestionList",regexpQuestionList);
+    @GetMapping("/question/{id}")
+    public String question(@PathVariable(name = "id") long id, Model model) {
+        List<CommentDTO> commentDTOList = commentService.listByTargetId(id, CommentTypeEnum.QUESTION);
+        //累计增加阅读数
+        questionService.incView(id);
+        QuestionDTO questionDTO = questionService.getById(id);
+
+        List<QuestionDTO> regexpQuestionList = questionService.selectRegexpTag(questionDTO);
+        model.addAttribute("questionDTO", questionDTO);
+        model.addAttribute("commentDTOList", commentDTOList);
+        model.addAttribute("regexpQuestionList", regexpQuestionList);
 
         return "question";
     }

@@ -2,7 +2,7 @@
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
     <title>发布--码匠社区</title>
-    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
     <link rel="stylesheet" href="/css/bootstrap.min.css">
     <link rel="stylesheet" href="/css/bootstrap-theme.min.css">
     <link rel="stylesheet" href="/css/comunity.css">
@@ -22,17 +22,17 @@
 <div th:insert="~{navigation :: nav}"></div>
 
 
-<div class="container-fluid main" >
+<div class="container-fluid main">
     <div class="row">
         <div class="col-lg-9 col-md-12 col-sm-12 col-xs-12">
             <h2><span class="glyphicon glyphicon-plus" aria-hidden="true"></span> 发起</h2>
             <HR>
-            <form action="/publish" method="post" >
+            <form action="/publish" method="post">
                 <input type="hidden" name="id" th:value="${id}">
                 <div class="form-group">
                     <label for="title">问题标题（简单扼要）:</label>
                     <input type="text" class="form-control" id="title" name="title" th:value="${title}"
-                           autocomplete="off"   placeholder="问题标题……">
+                           autocomplete="off" placeholder="问题标题……">
                 </div>
 
                 <div class="form-group" id="question-editor">
@@ -68,9 +68,10 @@
                     <div id="showTag" class="publish-tag-tab">
                         <!-- Nav tabs -->
                         <ul class="nav nav-tabs" role="tablist">
-                            <li role="presentation"  th:each="selectCategory,selectCategoryStat:${tagCaches}"
+                            <li role="presentation" th:each="selectCategory,selectCategoryStat:${tagCaches}"
                                 th:class="${selectCategoryStat.first ?'active':''}">
-                                <a th:href="${'#'+selectCategory.categoryName}" aria-controls="home" role="tab" data-toggle="tab"
+                                <a th:href="${'#'+selectCategory.categoryName}" aria-controls="home" role="tab"
+                                   data-toggle="tab"
                                    th:text="${selectCategory.categoryName}"></a>
                             </li>
                         </ul>
@@ -81,10 +82,10 @@
                                  th:each="selectCategory:${tagCaches}"
                                  th:class="${selectCategoryStat.first ?'active tab-pane':' tab-pane'}">
                                 <span>
-                                    <span  class="label label-info " th:each="selectTag :${selectCategory.tags}" >
+                                    <span class="label label-info " th:each="selectTag :${selectCategory.tags}">
                                     <span class="glyphicon glyphicon-tags" onclick="selectTag(this)"
                                           th:data-tag="${selectTag}"
-                                          th:text="${' '+selectTag}" >
+                                          th:text="${' '+selectTag}">
                                     </span>
                                     </span>
                              </span>
@@ -95,13 +96,15 @@
 
                 </div>
 
-                <div class="container-fluid main" >
+                <div class="container-fluid main">
                     <div class="row">
-                        <div class="alert alert-danger col-lg-6 col-md-12 col-sm-12 col-xs-12" th:if="${error !=null}" th:text="${error}">
+                        <div class="alert alert-danger col-lg-6 col-md-12 col-sm-12 col-xs-12" th:if="${error !=null}"
+                             th:text="${error}">
                         </div>
                         <div class="col-lg-6 col-md-12 col-sm-12 col-xs-12"></div>
-                            <button type="submit" class="btn btn-success btn-publish">发布</button></div>
+                        <button type="submit" class="btn btn-success btn-publish">发布</button>
                     </div>
+                </div>
 
             </form>
 
@@ -114,7 +117,6 @@
         </div>
     </div>
 </div>
-
 
 
 <div th:insert="~{footer :: foot}"></div>

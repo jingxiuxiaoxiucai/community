@@ -22,50 +22,50 @@ import java.util.Map;
 @Controller
 public class CommentController {
 
-        @Autowired
-      private CommentService commentService;
+    @Autowired
+    private CommentService commentService;
 
     /**
      * 添加回复消息和评论问题
+     *
      * @param commentCreateDTO
      * @param request
      * @return
      */
-        @ResponseBody
+    @ResponseBody
     @RequestMapping(value = "/comment", method = RequestMethod.POST)
     public Object post(@RequestBody CommentCreateDTO commentCreateDTO
-    , HttpServletRequest request){
+            , HttpServletRequest request) {
         User user = (User) request.getSession().getAttribute("user");
-        if(user ==null){
+        if (user == null) {
             return ResultDTO.errorOf(CustomizeErrorCode.NO_LONG);
         }
-        if(commentCreateDTO==null || StringUtils.isBlank(commentCreateDTO.getContent())){
-            return  ResultDTO.errorOf(CustomizeErrorCode.COMMENT_IS_EMPTY);
+        if (commentCreateDTO == null || StringUtils.isBlank(commentCreateDTO.getContent())) {
+            return ResultDTO.errorOf(CustomizeErrorCode.COMMENT_IS_EMPTY);
         }
 
         Comment comment = new Comment();
-            comment.setParentId(commentCreateDTO.getParentId());
-            comment.setContent(commentCreateDTO.getContent());
-            comment.setType(commentCreateDTO.getType());
-            comment.setGmtCreate(System.currentTimeMillis());
-            comment.setGmtModified(System.currentTimeMillis());
-            comment.setCommentator(user.getId());
-            comment.setLikeCount(0l);
-            comment.setCommentCount(0);
-         commentService.insert(comment,user);
-            Map<Object,Object> objectObjectMap=new HashMap<>();
-            objectObjectMap.put("message","成功");
-        return  ResultDTO.okOf();
+        comment.setParentId(commentCreateDTO.getParentId());
+        comment.setContent(commentCreateDTO.getContent());
+        comment.setType(commentCreateDTO.getType());
+        comment.setGmtCreate(System.currentTimeMillis());
+        comment.setGmtModified(System.currentTimeMillis());
+        comment.setCommentator(user.getId());
+        comment.setLikeCount(0l);
+        comment.setCommentCount(0);
+        commentService.insert(comment, user);
+        Map<Object, Object> objectObjectMap = new HashMap<>();
+        objectObjectMap.put("message", "成功");
+        return ResultDTO.okOf();
     }
 
     /**
-     *
      * @param id
      * @return
      */
     @ResponseBody
     @RequestMapping(value = "/comment/{id}", method = RequestMethod.GET)
-    public  ResultDTO <List<CommentDTO>> comments(@PathVariable(name = "id") Long id){
+    public ResultDTO<List<CommentDTO>> comments(@PathVariable(name = "id") Long id) {
         List<CommentDTO> commentDTOS = commentService.listByTargetId(id, CommentTypeEnum.COMMENT);
         return ResultDTO.okOf(commentDTOS);
     }
